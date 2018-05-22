@@ -29,14 +29,16 @@ Vertex::~Vertex()
 			break;
 		}
 	}*/
-	for (unsigned i = 0; i < dzieci.size(); ++i) {
-		dzieci[i]->ojciec = ojciec;
-		ojciec->dzieci.push_back(dzieci[i]);
-	}
-	for (unsigned i = 0; i < ojciec->dzieci.size(); ++i) {
-		if (ojciec->dzieci[i] == this) {
-			ojciec->dzieci.erase(ojciec->dzieci.begin() + i);
-			break;
+	if (ojciec != nullptr) {
+		for (unsigned i = 0; i < dzieci.size(); ++i) {
+			dzieci[i]->ojciec = ojciec;
+			ojciec->dzieci.push_back(dzieci[i]);
+		}
+		for (unsigned i = 0; i < ojciec->dzieci.size(); ++i) {
+			if (ojciec->dzieci[i] == this) {
+				ojciec->dzieci.erase(ojciec->dzieci.begin() + i);
+				break;
+			}
 		}
 	}
 }
