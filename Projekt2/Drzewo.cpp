@@ -73,14 +73,14 @@ bool Drzewo::dodajWierzcholek(string nadrzedne_, string wyraz_)
 		return false;
 	}
 	Vertex *v = new Vertex(wyraz_);
-	if (v == nullptr) {
-		return true;
+	if (v == nullptr) { // sprawdzenie czy udalo sie przydzelic pamiec
+		return false;
 	}
 	v->ojciec = nadrzedny;
 	//nadrzedny->dzieci.push_back(v);
 	listaWierzcholkow.insert(pair<int, Vertex*>(listaWierzcholkow.size(), v));
 	nadrzedny->dzieci.push_back(v);
-	return 1;
+	return true;
 }
 
 bool Drzewo::dodajSynonim(string slowo, string synonim)
@@ -157,8 +157,8 @@ bool Drzewo::usunWierzcholek(std::string slowo)
 		return false;
 	for (auto i = listaWierzcholkow.begin(); i != listaWierzcholkow.end(); ++i) {
 		if (i->second == v) {
-			delete i->second;
-			listaWierzcholkow.erase(listaWierzcholkow.find(i->first));
+			delete i->second;//usuniecie wierzcholka
+			listaWierzcholkow.erase(listaWierzcholkow.find(i->first)); //usuniecie elementu mapy
 			break;
 		}
 	}
