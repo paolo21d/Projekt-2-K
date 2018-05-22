@@ -11,7 +11,10 @@ using namespace std;
 
 int main() {
 	int opcja;
-	string word, nadrzedny, synonim;
+	string word;
+	string nadrzedny;
+	string synonim;
+
 	cout << "Podaj slowo nadrzedne (pierwszy wierzcholek drzewa): ";
 	cin >> word;
 	Drzewo drzewo(word);
@@ -27,14 +30,18 @@ int main() {
 		while (!(cin >> opcja)) {
 			cout << endl << "Blad wprowadzania! Podaj odpowiedni numer z menu ";
 			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cin.ignore(1024, '\n');
 		}
+		cin.clear();
+		cin.ignore(1024, '\n');
 		if (opcja == 1) { //dodaj podrzedne
 			cout << "Podaj slowo nadrzedne: ";
-			cin >> nadrzedny;
+			//cin >> nadrzedny;
+			getline(cin, nadrzedny);
 			cout << "Podaj slowo ktore chcesz dodac: ";
-			cin >> word;
-			if (drzewo.dodajWierzcholek(nadrzedny, word) == 0) {
+			//cin >> word;
+			getline(cin, word);
+			if (!drzewo.dodajWierzcholek(nadrzedny, word)) {
 				cout << "Blad!"<<endl;
 				continue;
 			}
@@ -43,10 +50,12 @@ int main() {
 		}
 		else if (opcja == 2) { //dodaj synonim
 			cout << "Podaj slowo ktoremu chcesz dodac synonim: ";
-			cin >> word;
+			//cin >> word;
+			getline(cin, word);
 			cout << "Podaj synonim: ";
-			cin >> synonim;
-			if (drzewo.dodajSynonim(word, synonim) == 0) {
+			//cin >> synonim;
+			getline(cin, synonim);
+			if (!drzewo.dodajSynonim(word, synonim)) {
 				cout << "Blad!" << endl;
 				continue;
 			}
@@ -57,20 +66,25 @@ int main() {
 		}
 		else if (opcja == 4) { //wypisz synonimy
 			cout << "Podaj slowo ktorego synonimy chcesz zobaczyc: ";
-			cin >> word;
-			if (drzewo.wypiszSynonimy(word) == 0)
+			//cin >> word;
+			getline(cin, word);
+			if (!drzewo.wypiszSynonimy(word))
 				cout << "Blad!" << endl;
 		}
 		else if (opcja == 5) { //wypisz nadrzedne
 			cout << "Podaj slowo ktorego hypernimu szukasz: ";
-			cin >> word;
-			if (drzewo.wypiszHipernim(word) == 0)
+			//cin >> word;
+			getline(cin, word);
+			cout << endl;
+			if (!drzewo.wypiszHipernim(word))
 				cout << "Blad!" << endl;
 		}
 		else if (opcja == 6) { //wypisz podrzedne
 			cout << "Podaj slowo ktorego hiponimow szukasz: ";
-			cin >> word;
-			if (drzewo.wypiszPodrzedne(word) == 0)
+			//cin >> word;
+			getline(cin, word);
+			cout << endl;
+			if (!drzewo.wypiszPodrzedne(word))
 				cout << "Blad!" << endl;
 		}
 		else if (opcja == 0) {

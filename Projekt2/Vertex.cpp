@@ -17,9 +17,6 @@ Vertex::Vertex(std::string wyraz_)
 	ojciec = nullptr;
 }
 
-std::string Vertex::getWyraz() const
-{
-	return wyraz;
-}
+
 
 
