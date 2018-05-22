@@ -19,6 +19,8 @@ Drzewo::~Drzewo()
 	}*/
 	for (auto i = listaWierzcholkow.begin(); i != listaWierzcholkow.end(); i++)
 		delete i->second;
+	//for (auto i = listaWierzcholkow.end(); i != listaWierzcholkow.begin(); --i)
+	//	delete i->second;
 }
 
 //Vertex * Drzewo::znajdzWierzcholek(string nazwa) const
@@ -104,6 +106,7 @@ void Drzewo::wypiszWszystkieWyrazy() const
 {
 	for (auto i=listaWierzcholkow.begin(); i !=listaWierzcholkow.end(); ++i) {
 		auto &w = i->second;
+		if (i->second == nullptr) continue;
 		cout << w->wyraz << " ";
 		for (unsigned k = 0; k < w->synonim.size(); ++k) {
 			cout << w->synonim[k] << " ";
@@ -144,5 +147,25 @@ bool Drzewo::wypiszPodrzedne(string slowo) const
 		return false;
 	for (unsigned i = 0; i < v->dzieci.size(); ++i)
 		cout << v->dzieci[i]->wyraz << " ";
+	return true;
+}
+
+bool Drzewo::usunWierzcholek(std::string slowo)
+{
+	Vertex *v = znajdzWierzcholek(slowo);
+	if (v == nullptr || v==glowa)
+		return false;
+	for (auto i = listaWierzcholkow.begin(); i != listaWierzcholkow.end(); ++i) {
+		if (i->second == v) {
+			delete i->second;
+			listaWierzcholkow.erase(listaWierzcholkow.find(i->first));
+			break;
+		}
+	}
+	/*for (auto i = listaWierzcholkow.begin(); i != listaWierzcholkow.end(); ++i) {
+		if (i->second == nullptr) {
+			listaWierzcholkow.erase(i);
+		}
+	}*/
 	return true;
 }

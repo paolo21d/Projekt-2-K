@@ -21,6 +21,7 @@ public:
 	bool wypiszSynonimy(std::string slowo) const;
 	bool wypiszHipernim(std::string slowo) const;
 	bool wypiszPodrzedne(std::string slowo) const;
+	bool usunWierzcholek(std::string slowo);
 }; 
 
 #endif // !DRZEWO_H

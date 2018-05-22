@@ -26,6 +26,7 @@ int main() {
 		cout << "4 Wypisz synonimy" << endl;
 		cout << "5 Wypisz hipernim (slowo nadrzedne)" << endl;
 		cout << "6 Wypisz hiponimy (slowa podrzedne)" << endl;
+		cout << "7 Usun slowo" << endl;
 		cout << "0 Zakoncz program" << endl;
 		while (!(cin >> opcja)) {
 			cout << endl << "Blad wprowadzania! Podaj odpowiedni numer z menu ";
@@ -85,6 +86,13 @@ int main() {
 			getline(cin, word);
 			cout << endl;
 			if (!drzewo.wypiszPodrzedne(word))
+				cout << "Blad!" << endl;
+		}
+		else if (opcja == 7) {
+			cout << "Podaj slowo ktore chcesz usunac: ";
+			getline(cin, word);
+			cout << endl;
+			if (!drzewo.usunWierzcholek(word))
 				cout << "Blad!" << endl;
 		}
 		else if (opcja == 0) {

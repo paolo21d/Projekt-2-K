@@ -14,6 +14,7 @@ public:
 
 	Vertex(std::string wyraz_, std::string synonim_);
 	Vertex(std::string wyraz_);
+	~Vertex();
 	
 };
 
